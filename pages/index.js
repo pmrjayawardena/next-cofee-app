@@ -2,7 +2,18 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Banner from '../components/Banner/Banner.jsx';
-export default function Home() {
+import Card from '../components/Card/Card';
+import cofeeStores from '../data/coffee-stores.json';
+
+export async function getStaticProps(context) {
+	return {
+		props: { storeDataStatic: cofeeStores }, // will be passed to the page component as props
+	};
+}
+
+export default function Home(props) {
+	const { storeDataStatic } = props;
+
 	const handleOnBannerButtonClick = () => {
 		console.log('hi clicked');
 	};
@@ -16,9 +27,34 @@ export default function Home() {
 
 			<main className={styles.main}>
 				<h1>Coffee Shop</h1>
-				<Banner buttonText='View stores nearby' handleOnClick={handleOnBannerButtonClick} />
+				<Banner
+					buttonText='View stores nearby'
+					handleOnClick={handleOnBannerButtonClick}
+				/>
 				<div className={styles.heroImage}>
-					<Image src='/static/hero-image.png' width={700} height={400} alt='hero-image' />
+					<Image
+						src='/static/hero-image.png'
+						width={700}
+						height={400}
+						alt='hero-image'
+					/>
+				</div>
+				{storeDataStatic.length > 0 && (
+					<h2 className={styles.heading2}>Our awesome shops</h2>
+				)}
+
+				<div className={styles.cardLayout}>
+					{storeDataStatic.map((store) => {
+						return (
+							<Card
+								key={store.id}
+								className='card'
+								name={store.name}
+								href={`/coffee-store/${store.id}`}
+								imgUrl={store.imgUrl}
+							/>
+						);
+					})}
 				</div>
 			</main>
 

@@ -1,23 +1,23 @@
 
-@font-face {
+/* @font-face {
   font-family: "NotoSerif";
   font-style: normal;
   font-weight: 500;
   src: url(/fonts/NotoSerif-Bold.ttf) format("truetype");
-}
+} */
 
 @font-face {
-  font-family: "NotoSerif";
+  font-family: "Joan";
   font-style: normal;
   font-weight: 600;
-  src: url(/fonts/NotoSerif-Regular.ttf) format("truetype");
+  src: url(/fonts/Joan-Regular.ttf) format("truetype");
 }
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family:NotoSerif;
+  font-family: 'Joan', serif;
   background: url("/static/background.png");
   background-position: 50%;
   background-repeat: no-repeat;
